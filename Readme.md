@@ -1,0 +1,1 @@
+To validate cases described in the task run ShouldFindCorrectLongestSleepInAWeek test method in LongestSleepFinder.Tests.LongestSleepFinderTests.cs
