@@ -9,7 +9,8 @@ namespace LongestSleepFinder.Tests
         [MemberData(nameof(GetLongestSleepInScheduleTestData))]
         public void ShouldFindCorrectLongestSleepInAWeek(string schedule, int expectedSleep)
         {
-            var result = FindLongestSleepInSchedule(schedule);
+            var service = new LongestSleepFinderService();
+            var result = service.Find(schedule);
             
             Assert.Equal(expectedSleep, result);
         }
