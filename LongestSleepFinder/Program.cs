@@ -1,4 +1,4 @@
-﻿using System;
+﻿using BenchmarkDotNet.Running;
 
 namespace LongestSleepFinder
 {
@@ -6,7 +6,7 @@ namespace LongestSleepFinder
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var summary = BenchmarkRunner.Run<AnalyticsService>();
         }
     }
 }

@@ -5,12 +5,22 @@ namespace LongestSleepFinder.Tests
 {
     public class LongestSleepFinderTests
     {
+        private LongestSleepFinderService service = new LongestSleepFinderService();
+        
         [Theory]
         [MemberData(nameof(GetLongestSleepInScheduleTestData))]
         public void ShouldFindCorrectLongestSleepInAWeek(string schedule, int expectedSleep)
         {
-            var service = new LongestSleepFinderService();
-            var result = service.Find(schedule);
+            var result = service.FindUsingString(schedule);
+            
+            Assert.Equal(expectedSleep, result);
+        }
+        
+        [Theory]
+        [MemberData(nameof(GetLongestSleepInScheduleTestData))]
+        public void ShouldFindCorrectLongestSleepInAWeekUsingSpan(string schedule, int expectedSleep)
+        {
+            var result = service.FindUsingSpan(schedule);
             
             Assert.Equal(expectedSleep, result);
         }
