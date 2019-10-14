@@ -93,7 +93,7 @@ namespace LongestSleepFinder
             var meetingsInAWeek = new List<MeetingInterval>();
             var incorrectDayEndFormat = (ReadOnlySpan<char>) stackalloc char[] {'2', '4', ':', '0', '0'};
 
-            var scheduleSpan = new ReadOnlySpan<char>(schedule.ToCharArray());
+            var scheduleSpan = schedule.AsSpan();
 
             var startIndex = 0;
             var endIndex = scheduleSpan.IndexOf(Environment.NewLine);
@@ -110,7 +110,7 @@ namespace LongestSleepFinder
                 var meetingTimeSeparatorIndex = meetingDataSpan.IndexOf(MeetingTimeSeparator);
                 var startTimeSpan =
                     meetingDataSpan.Slice(timeStartIndex + 1, meetingTimeSeparatorIndex - timeStartIndex - 1);
-                var meetingStart = ToSpecificTime(date, time: startTimeSpan.ToString());
+                var meetingStart = ToSpecificTimeUsingSpan(date, time: startTimeSpan);
 
                 var endTimeSpan = meetingDataSpan.Slice(meetingDataSpan.IndexOf(MeetingTimeSeparator) + 1);
                 var meetingEnd = endTimeSpan.Equals(incorrectDayEndFormat, StringComparison.OrdinalIgnoreCase)
